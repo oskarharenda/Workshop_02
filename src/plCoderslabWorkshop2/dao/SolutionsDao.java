@@ -10,7 +10,7 @@ import java.util.Arrays;
 public class SolutionsDao {
 
         private static final String CREATE_SOLUTION_QUERY =
-                "INSERT INTO users(created, updated, description, exercise_id, user_id) VALUES (?, ?, ?, ?, ?)";
+                "INSERT INTO solutions(created, updated, description, exercise_id, user_id) VALUES (?, ?, ?, ?, ?)";
         private static final String READ_SOLUTION_QUERY =
                 "SELECT * FROM solutions where id = ?";
         private static final String UPDATE_SOLUTION_QUERY =
@@ -19,6 +19,8 @@ public class SolutionsDao {
                 "DELETE FROM solutions WHERE id = ?";
         private static final String FIND_ALL_SOLUTIONS_QUERY =
                 "SELECT * FROM solutions";
+        private static final String READ_SOLUTION_BY_USER =
+                "select * from solutions join users u on solutions.user_id = u.id where user_id=?";
 
     public Solutions create(Solutions solutions) {
         try (Connection conn = DBUtil.Conetion()) {
@@ -113,4 +115,27 @@ public class SolutionsDao {
             e.printStackTrace(); return null;
         }
     }
+
+    public Solutions[] SolutionsUser(int userId) {
+        try (Connection conn = DBUtil.Conetion()) {
+            Solutions[] solutions = new Solutions[0];
+            PreparedStatement statement = conn.prepareStatement(READ_SOLUTION_BY_USER);
+            statement.setInt(1, userId);
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Solutions solution = new Solutions();
+                solution.setId(resultSet.getInt("id"));
+                solution.setCreated(resultSet.getString("created"));
+                solution.setUpdated(resultSet.getString("updated"));
+                solution.setDescription(resultSet.getString("description"));
+                solution.setExercises_id(resultSet.getInt("exercise_id"));
+                solution.setUser_id(resultSet.getInt("user_id"));
+                solutions = addToArray(solution,solutions);
+            }
+            return solutions;
+        } catch (SQLException e) {
+            e.printStackTrace(); return null;
+        }
+    }
+
 }

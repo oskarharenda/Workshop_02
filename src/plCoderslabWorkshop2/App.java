@@ -2,8 +2,10 @@ package plCoderslabWorkshop2;
 
 import jdk.jfr.DataAmount;
 import plCoderslabWorkshop2.dao.ExerciseDao;
+import plCoderslabWorkshop2.dao.SolutionsDao;
 import plCoderslabWorkshop2.dao.UserDao;
 import plCoderslabWorkshop2.model.Exercise;
+import plCoderslabWorkshop2.model.Solutions;
 import plCoderslabWorkshop2.model.User;
 
 public class App {
@@ -35,8 +37,8 @@ public class App {
 //         System.out.println(user);
 //     }
 
-        Exercise exercise_1= new Exercise("exercise3","description_3");
-        ExerciseDao exDao_1 = new ExerciseDao();
+//        Exercise exercise_1= new Exercise("exercise3","description_3");
+//        ExerciseDao exDao_1 = new ExerciseDao();
 //        exercise_1=exDao_1.read(3);
 //        //exDao_1.create(exercise_1);
 //
@@ -48,6 +50,15 @@ public class App {
 //        System.out.println(exercise_1);
 
 //        exDao_1.delete(4);
+
+        SolutionsDao solution1 = new SolutionsDao();
+        Solutions[] tab=solution1.SolutionsUser(1);
+
+        for(int i=0; i<tab.length; i++){
+            System.out.println(tab[i]);
+        }
+
+        System.out.println(solution1.read(1));
 
 
     }

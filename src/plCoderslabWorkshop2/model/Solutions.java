@@ -12,7 +12,7 @@ public class Solutions {
 
     }
 
-    public Solutions(int id, String created, String updated,String description, int exercises_id, int user_id) {
+    public Solutions(int id, String created, String updated, String description, int exercises_id, int user_id) {
         this.id = id;
         this.created = created;
         this.updated = updated;
@@ -75,6 +75,7 @@ public class Solutions {
                 "id=" + id +
                 ", created='" + created + '\'' +
                 ", updated='" + updated + '\'' +
+                ", description='" + description + '\'' +
                 ", exercises_id=" + exercises_id +
                 ", user_id=" + user_id +
                 '}';
