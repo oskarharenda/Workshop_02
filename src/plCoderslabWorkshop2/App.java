@@ -37,9 +37,18 @@ public class App {
 
         Exercise exercise_1= new Exercise("exercise3","description_3");
         ExerciseDao exDao_1 = new ExerciseDao();
-        //exDao_1.create(exercise_1);
-        exDao_1.update(exercise_1);
-        System.out.println(exDao_1.read(3));
+//        exercise_1=exDao_1.read(3);
+//        //exDao_1.create(exercise_1);
+//
+//                if (exercise_1!= null){
+//            exercise_1.setTitle("title3");
+//            exDao_1.update(exercise_1);
+//        }
+//
+//        System.out.println(exercise_1);
+
+//        exDao_1.delete(4);
+
 
     }
 }
